@@ -12,7 +12,7 @@
   </div>
 	
   <form method="post" action="register.php">
-
+  <?php include('errors.php'); ?>
   	<div class="input-group">
   	  <label>Full Name</label>
   	  <input type="text" name="username" value="<?php echo $username; ?>">
