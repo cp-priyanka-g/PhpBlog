@@ -1,25 +1,16 @@
 <?php
-session_start();
-$errors = array(); 
+        session_start();
+        $errors = array(); 
 
     $uname=$_POST['username'];
     $emailid=$_POST['email'];
     $pass1=$_POST['password_1'];
     $pass2=$_POST['password_2'];
-
-
 
 $db = mysqli_connect('localhost', 'root', '', 'myblog');
 
 
 if (isset($_POST['reg_user'])) {
-
-    $uname=$_POST['username'];
-    $emailid=$_POST['email'];
-    $pass1=$_POST['password_1'];
-    $pass2=$_POST['password_2'];
-
-
 
   $username = mysqli_real_escape_string($db, $uname);
   $email = mysqli_real_escape_string($db, $emailid);
@@ -55,6 +46,13 @@ if (isset($_POST['reg_user'])) {
 
   	$query = "INSERT INTO users (username, email, upassword, user_type, ustatus)VALUES('$username', '$email', '$password_1','General','Active')";
   	mysqli_query($db, $query);
+    if ($db->query($query) === TRUE) {
+      echo "New record created successfully" ;
+    } else {
+      echo "Error: " . $query . "<br>" . $db->error;
+    }
+    
+    $conn->close();
   	$_SESSION['username'] = $username;
   	$_SESSION['success'] = "You are now logged in";
   	header('location: login.php');
@@ -107,5 +105,4 @@ echo "hello $uname,$pass1";
 
     }
   }
-  
-  ?>
+  ?> 
