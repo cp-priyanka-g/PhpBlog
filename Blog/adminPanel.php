@@ -15,7 +15,8 @@ if (isset($_POST['post_btn'])) {
     $author=$_POST['author'];  
     $category=$_POST['category'];
 
-    $target_dir = "uploads/";
+    $filename = $_FILES['myfile']['name'];
+    $target_dir = 'uploads/'. $filename;
     $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
     
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
@@ -25,11 +26,17 @@ if (isset($_POST['post_btn'])) {
     $query = "INSERT INTO posts (title,descriptionbox,created_date,author,category,featureimage)VALUES('$title', '$desc', '$create_date','$author','$category','$target_file')";
   	mysqli_query($db, $query);
 
+    $query2 = "INSERT INTO view_post (admin_id,view_status)VALUES('1','Active')";
+  	mysqli_query($db, $query2);
+
+
     die($query); 
+    die($query2); 
     $db->close();
+    header('location: adminHome.php');
 }
 
-   
+
     
 
   ?>

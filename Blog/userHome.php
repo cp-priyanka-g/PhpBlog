@@ -59,10 +59,12 @@ if ($db->connect_error) {
   $result = $db->query($sql);
 
   if ($result->num_rows > 0) {
+	  
 	echo "<table><tr><th>ID</th><th>Title</th><th>Description</th><th>Date</th><th>Author</th> <th>Category</th> <th>Image</th></tr>";
 	// output data of each row
 	while($row = $result->fetch_assoc()) {
-	  echo "<tr><td>" . $row["pid"]. "</td> <td>" . $row["title"]. "</td> <td>" . $row["descriptionbox"]. "</td> <td>" . $row["created_date"]. "</td> <td>" . $row["author"]. "</td><td>" . $row["category"]. "</td><td>" . $row["featureimage"]. "</td></tr>";
+		$imageURL = 'uploads/'.$row["featureimage"];
+	  echo "<tr><td>" . $row["pid"]. "</td> <td>" . $row["title"]. "</td> <td>" . $row["descriptionbox"]. "</td> <td>" . $row["created_date"]. "</td> <td>" . $row["author"]. "</td><td>" . $row["category"]. "</td><td><img src=" . $imageURL ."alt= /></td></tr>";
 	}
 	echo "</table>";
   } else {

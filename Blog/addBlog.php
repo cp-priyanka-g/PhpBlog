@@ -47,6 +47,7 @@
     <button type="submit" class="btn" name="post_btn"> Publish</button>
 </div>
 </form>
+<a href="adminHome.php">BACK</a>
 	
 </body>
 </html>

@@ -44,8 +44,9 @@ if (isset($_POST['reg_user'])) {
   if (count($errors) == 0) {
   	// $password = md5($password_1);
 
-  	$query = "INSERT INTO users (username, email, upassword, user_type, ustatus)VALUES('$username', '$email', '$password_1','General','Active')";
-  	mysqli_query($db, $query);
+  	$query = "INSERT INTO users (username, email, upassword, user_type)VALUES('$username', '$email', '$password_1','General')";
+    mysqli_query($db, $query);
+  
     if ($db->query($query) === TRUE) {
       echo "New record created successfully" ;
     } else {
