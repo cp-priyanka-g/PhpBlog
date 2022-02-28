@@ -1,5 +1,4 @@
 <?php include "server.php"; ?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,11 +14,11 @@
   <?php include "errors.php"; ?>
   	<div class="input-group">
   	  <label>Full Name</label>
-  	  <input type="text" name="username" value="<?php echo $username; ?>">
+  	  <input type="text" name="username">
   	</div>
   	<div class="input-group">
   	  <label>Email</label>
-  	  <input type="email" name="email" value="<?php echo $email; ?>">
+  	  <input type="email" name="email" >
   	</div>
   	<div class="input-group">
   	  <label>Password</label>
