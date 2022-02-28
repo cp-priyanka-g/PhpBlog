@@ -1,4 +1,4 @@
-<?php include('adminPanel.php'); ?>
+<?php include "adminPanel.php"; ?>
 <!DOCTYPE html>
 
 <html>

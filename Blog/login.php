@@ -1,4 +1,4 @@
-<?php include('server.php') ?>
+<?php include "server.php"; ?>
 
 <!DOCTYPE html>
 <html>
@@ -12,7 +12,7 @@
   </div>
 	 
   <form method="post" action="login.php">
-  	<?php include('errors.php'); ?>
+  	<?php include "errors.php"; ?>
   	<div class="input-group">
   		<label>Username</label>
   		<input type="text" name="username" >
