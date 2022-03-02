@@ -12,7 +12,7 @@
 	<h2>Add Blog</h2>
 </div>
 
-<form method="post" enctype="multipart/form-data">
+<form action="adminPanel.php" method="post" enctype="multipart/form-data">
 
 
 <div>

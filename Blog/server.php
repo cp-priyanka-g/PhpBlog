@@ -1,16 +1,17 @@
 <?php
-        session_start();
+         session_start();
         $errors = array(); 
 
-    $uname=$_POST['username'];
-    $emailid=$_POST['email'];
-    $pass1=$_POST['password_1'];
-    $pass2=$_POST['password_2'];
 
 $db = mysqli_connect('localhost', 'root', '', 'myblog');
 
 
 if (isset($_POST['reg_user'])) {
+
+    $uname=$_POST['username'];
+    $emailid=$_POST['email'];
+    $pass1=$_POST['password_1'];
+    $pass2=$_POST['password_2'];
 
   $username = mysqli_real_escape_string($db, $uname);
   $email = mysqli_real_escape_string($db, $emailid);
@@ -45,66 +46,21 @@ if (isset($_POST['reg_user'])) {
   	// $password = md5($password_1);
 
   	$query = "INSERT INTO users (username, email, upassword, user_type, ustatus)VALUES('$username', '$email', '$password_1','General','Active')";
-  	mysqli_query($db, $query);
-  	  die($query);
-    if ($db->query($query) === TRUE) {
+  	
+  	
+   if ($db->query($query) === TRUE) {
       echo "New record created successfully" ;
+      header('location: login.php');
     
-    } else {
+   } else {
       echo "Error: " . $query . "<br>" . $db->error;
     }
     
     $conn->close();
   	$_SESSION['username'] = $username;
-  	$_SESSION['success'] = "You are now logged in";
-  	header('location: login.php');
+  	 $_SESSION['success'] = "You are now logged in";
+  
   }
 }
-// LOGIN USER
 
-$errors = array();
-
-if (isset($_POST['login_user'])) {
-
-    $uname=$_POST['username'];
-     $pass1=$_POST['password'];
-  
-echo "hello $uname,$pass1";
-
-    $username = mysqli_real_escape_string($db,$uname);
-    $password = mysqli_real_escape_string($db,$pass1);
-  
-    if (empty($username)) {
-        array_push($errors, "Username is required");
-    }
-    if (empty($password)) {
-        array_push($errors, "Password is required");
-    }
-  
-    if (count($errors) == 0) {
-        // $password = md5($password);
-        $query = "SELECT * FROM users WHERE username='$username' AND upassword='$password'";
-        $results = mysqli_query($db, $query);
-
-        if (mysqli_num_rows($results) == 1) {// user found
-			// check if user is admin or user
-            $logged_in_user = mysqli_fetch_assoc($results);
-			if ($logged_in_user['user_type'] == 'admin') {
-
-				$_SESSION['user'] = $logged_in_user;
-				$_SESSION['success']  = "You are now logged in";
-				header('location: adminHome.php');		  
-            }
-            if ($logged_in_user['user_type'] == 'General'){
-                $_SESSION['username'] = $username;
-                $_SESSION['success'] = "You are now logged in";
-                header('location: userHome.php');
-            }
-         
-        }else {
-            array_push($errors, "Wrong username/password combination");
-        }
-
-    }
-  }
   ?> 

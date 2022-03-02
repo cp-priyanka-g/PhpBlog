@@ -50,13 +50,14 @@ table, th, td {
 
 <?php
 session_start();
-$user_i = $_SESSION["uid"];
+
 $db = mysqli_connect("localhost", "root", "", "myblog");
 if ($db->connect_error) {
     die("Connection failed: " . $db->connect_error);
 }
-$sql =
-    "select v.view_status, p.pid, p.title, p.descriptionbox, p.created_date, p.author, p.category, p.featureimage  from posts as p  join view_post as v  on p.pid = v.post_id where v.view_status='Active' GROUP BY v.post_id";
+//$sql ="select v.view_status, p.pid, p.title, p.descriptionbox, p.created_date, p.author, p.category, p.featureimage  from posts as p  join view_post as v  on p.pid = v.post_id where     v.view_status='Active' GROUP BY v.post_id";
+if($_SESSION["user_status"]=='Active'){
+$sql="select *from posts";
 $result = $db->query($sql);
 if ($result->num_rows > 0) {
     echo "<table><tr><th>ID</th><th>Title</th><th>Description</th><th>Date</th><th>Author</th> <th>Category</th> <th>Image</th></tr>";
@@ -82,6 +83,7 @@ if ($result->num_rows > 0) {
     echo "</table>";
 } else {
     echo "0 results";
+    }
 }
 $db->close();
 ?>
