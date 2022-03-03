@@ -1,7 +1,12 @@
 <?php
 session_start();
 
-$db = mysqli_connect("localhost", "root", "", "myblog");
+if (!isset($_SESSION["user"])) {
+    $_SESSION["msg"] = "You must log in first";
+    header("location: login.php");
+}
+include "connection.php";
+
 if ($db->connect_error) {
     die("Connection failed: " . $db->connect_error);
 }

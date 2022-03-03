@@ -1,6 +1,7 @@
 <?php
 session_start();
-$db = mysqli_connect("localhost", "root", "", "myblog");
+include "connection.php";
+
 if ($db->connect_error) {
     die("Connection failed: " . $db->connect_error);
 }
@@ -34,7 +35,7 @@ $row = mysqli_fetch_array($result);
 } ?>
 </div>
 
-Username: <br>
+UserID: <br>
 <input type="hidden" name="userid" class="txtField" value="<?php echo $row[
     "id"
 ]; ?>">
